@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment , useState} from 'react';
 import { GoogleMap, Marker, Circle } from '@react-google-maps/api';
 
 interface BinData {
@@ -34,8 +34,51 @@ const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
     width: '100%',
   };
 
+  const [selectedData, setSelectedData] = useState('data_a'); // Default selected data type
+
+  const handleDataChange = (event) => {
+    setSelectedData(event.target.value);
+  };
+
   return (
     <>
+      <div>
+        <h3>Select a Data Type:</h3>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="data_a"
+              checked={selectedData === 'data_a'}
+              onChange={handleDataChange}
+            />
+            Data Type 1
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="data_b"
+              checked={selectedData === 'data_b'}
+              onChange={handleDataChange}
+            />
+            Data Type 2
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="data_c"
+              checked={selectedData === 'data_c'}
+              onChange={handleDataChange}
+            />
+            Data Type 3
+          </label>
+        </div>
+        <p>Selected Data Type: {selectedData}</p>
+      </div>
       <div>
         <GoogleMap
           mapContainerStyle={mapStyles}
@@ -57,7 +100,7 @@ const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
                       lat: lat,
                       lng: lng
                     }} 
-                    radius={bin_data.data_a}
+                    radius={bin_data[selectedData]}
                     options={{
                       fillColor: color, // Fill color for the circle
                       fillOpacity: 0.2, // Fill opacity
