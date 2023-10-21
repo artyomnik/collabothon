@@ -1,5 +1,6 @@
 import React, { Fragment , useState} from 'react';
 import { GoogleMap, Marker, Circle } from '@react-google-maps/api';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 interface BinData {
   data_a: number;
@@ -40,44 +41,17 @@ const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
     setSelectedData(event.target.value);
   };
 
+  const options = ['data_a', 'data_b', 'data_c'];
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
     <>
-      <div>
-        <h3>Select a Data Type:</h3>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="data_a"
-              checked={selectedData === 'data_a'}
-              onChange={handleDataChange}
-            />
-            Data Type 1
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="data_b"
-              checked={selectedData === 'data_b'}
-              onChange={handleDataChange}
-            />
-            Data Type 2
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="data_c"
-              checked={selectedData === 'data_c'}
-              onChange={handleDataChange}
-            />
-            Data Type 3
-          </label>
-        </div>
-        <p>Selected Data Type: {selectedData}</p>
+      <div >
+        <DropdownMenu options={options} onSelect={handleOptionSelect} />
       </div>
       <div>
         <GoogleMap
@@ -100,7 +74,7 @@ const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
                       lat: lat,
                       lng: lng
                     }} 
-                    radius={bin_data[selectedData]}
+                    radius={bin_data[selectedOption]}
                     options={{
                       fillColor: color, // Fill color for the circle
                       fillOpacity: 0.2, // Fill opacity
