@@ -18,15 +18,25 @@ const BINS = [
     lat: 50.103323,
     lng: 14.392298,
     color: "red",
+    bin_data: {
+      data_a: 100,
+      data_b: 200,
+      data_c: 300,
+    },
   },
   {
     id: "bin2",
     lat: 50.123323,
     lng: 14.412298,
     color: "blue",
+    bin_data: {
+      data_a: 150,
+      data_b: 260,
+      data_c: 370,
+    },
   },
 ]
-const MAPS_API_KEY="<add your key here>"
+const MAPS_API_KEY="AIzaSyBWhOp3JfRVbEvLGKbHIbnmg-q2ZDPlyCE"
 
 function Root() {
   const [showMap, setShowMap] = useState(false);
