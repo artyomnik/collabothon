@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function DropdownMenu({ options, onSelect }) {
+function DropdownMenu({ style, options, onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -14,6 +14,7 @@ function DropdownMenu({ options, onSelect }) {
     <div 
         onMouseEnter={() => setIsOpen(!isOpen)}
         onMouseLeave={() => setIsOpen(!isOpen)}
+        style={style}
         className="dropdown-button"
     >
         <div>

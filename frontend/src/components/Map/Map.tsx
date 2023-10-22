@@ -32,7 +32,7 @@ const blueDot = {
 const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
   const mapStyles = {
     height: '70vh',
-    width: '100%',
+    width: '70%',
   };
 
   const [selectedData, setSelectedData] = useState('data_a'); // Default selected data type
@@ -50,13 +50,10 @@ const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
 
   return (
     <>
-      <div >
-        <DropdownMenu options={options} onSelect={handleOptionSelect} />
-      </div>
-      <div>
+      <div style={{ width: "70vw" }} className="flex flex-row justify-items-center">
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={13}
+          zoom={15}
           center={bins[0]}
         >
           {
@@ -88,6 +85,7 @@ const MapComponent: React.FC<MapProps> = ({ bins, backToLeaderboard }) => {
             })
           }
         </GoogleMap>
+        <DropdownMenu style={{ float: "left", width: "50%"}} options={options} onSelect={handleOptionSelect} />
       </div>
       <div>
         <button
